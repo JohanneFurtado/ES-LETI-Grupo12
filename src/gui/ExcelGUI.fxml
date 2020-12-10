@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ExcelGui">
+   <children>
+      <Label alignment="TOP_LEFT" text="Excel">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableViewMethod" prefHeight="464.0" prefWidth="974.0">
+        <columns>
+            <TableColumn fx:id="tableColumnMethodId" prefWidth="70.0" text="MethodID" />
+          <TableColumn fx:id="tableColumnPackage" text="Package" />
+            <TableColumn fx:id="tableColumnClass" prefWidth="75.0" text="Class" />
+            <TableColumn fx:id="tableColumnMethod" prefWidth="75.0" text="Method" />
+            <TableColumn fx:id="tableColumnLOC" prefWidth="75.0" text="LOC" />
+            <TableColumn prefWidth="75.0" text="CYCLO" />
+            <TableColumn prefWidth="75.0" text="ATFD" />
+            <TableColumn prefWidth="75.0" text="LAA" />
+            <TableColumn prefWidth="108.0" text="IsLongMethod" />
+            <TableColumn prefWidth="93.0" text="iPlasma" />
+            <TableColumn prefWidth="75.0" text="PMD" />
+            <TableColumn minWidth="0.0" prefWidth="100.0" text="is-FeatureEnvy" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
