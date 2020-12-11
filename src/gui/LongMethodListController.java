@@ -101,11 +101,11 @@ public class LongMethodListController implements Initializable, DataChangeListen
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluto));
 			Pane pane = loader.load();
 
-			servidor.setLongMethod(this);
 			
-			ResultController controller = new ResultController();
+			ResultController controller = loader.getController();
 			controller.setObject(obj);
 			controller.setService(servidor);
+			servidor.setResult(controller);
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Resultado");
@@ -113,7 +113,10 @@ public class LongMethodListController implements Initializable, DataChangeListen
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(parentStage);
 			dialogStage.initModality(Modality.WINDOW_MODAL);
+			
 			dialogStage.showAndWait();
+			
+			
 
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);

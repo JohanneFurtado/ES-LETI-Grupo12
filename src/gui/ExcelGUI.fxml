@@ -17,16 +17,16 @@
         <columns>
             <TableColumn fx:id="tableColumnMethodId" prefWidth="70.0" text="MethodID" />
           <TableColumn fx:id="tableColumnPackage" text="Package" />
-            <TableColumn fx:id="tableColumnClass" prefWidth="75.0" text="Class" />
-            <TableColumn fx:id="tableColumnMethod" prefWidth="75.0" text="Method" />
-            <TableColumn fx:id="tableColumnLOC" prefWidth="75.0" text="LOC" />
-            <TableColumn prefWidth="75.0" text="CYCLO" />
-            <TableColumn prefWidth="75.0" text="ATFD" />
-            <TableColumn prefWidth="75.0" text="LAA" />
-            <TableColumn prefWidth="108.0" text="IsLongMethod" />
-            <TableColumn prefWidth="93.0" text="iPlasma" />
-            <TableColumn prefWidth="75.0" text="PMD" />
-            <TableColumn minWidth="0.0" prefWidth="100.0" text="is-FeatureEnvy" />
+            <TableColumn fx:id="tableColumnClass" prefWidth="119.0" text="Class" />
+            <TableColumn fx:id="tableColumnMethod" prefWidth="99.0" text="Method" />
+            <TableColumn fx:id="tableColumnLOC" prefWidth="61.0" text="LOC" />
+            <TableColumn fx:id="tableColumnCYCLO" prefWidth="48.0" text="CYCLO" />
+            <TableColumn fx:id="tableColumnATFD" prefWidth="68.0" text="ATFD" />
+            <TableColumn fx:id="tableColumnLAA" prefWidth="55.0" text="LAA" />
+            <TableColumn fx:id="tableColumnIsLongMethod" prefWidth="108.0" text="IsLongMethod" />
+            <TableColumn fx:id="tableColumnIPlasma" prefWidth="93.0" text="iPlasma" />
+            <TableColumn fx:id="tableColumnPMD" prefWidth="75.0" text="PMD" />
+            <TableColumn fx:id="tableColumnIsFeatureEnvy" minWidth="0.0" prefWidth="100.0" text="is-FeatureEnvy" />
         </columns>
       </TableView>
    </children>

@@ -6,17 +6,15 @@ public class Method {
 	private String packageName;
 	private String className;
 	private String methodName;
-	private Double n_LOC;
-	private Double n_CYCLO;
-	private Double n_ATFD;
-	private Double n_LAA;
-	private Boolean is_long_method;
+	private Double LOC;
+	private Double CYCLO;
+	private Double ATFD;
+	private Double LAA;
+	private Boolean islongmethod;
 	private Boolean iPlasma;
 	private Boolean PMD;
-	private Boolean is_feature_envy;
+	private Boolean isfeatureenvy;
 	
-	
-//	private List<Method> listSoft = new ArrayList<Method>();
 	
 	
 	public Method() {
@@ -25,21 +23,21 @@ public class Method {
 	
 	
 	public Method(Double methodID, String packageName, String className, String methodName, Double n_LOC,
-			Double n_CYCLO,Double n_ATFD, Double n_LAA, Boolean is_long_method, Boolean iPlasma, Boolean pMD,
-			Boolean is_feature_envy) {
+			Double n_CYCLO,Double n_ATFD, Double n_LAA, Boolean islongmethod, Boolean iPlasma, Boolean pMD,
+			Boolean isfeatureenvy) {
 		super();
 		this.methodID = methodID;
 		this.packageName = packageName;
 		this.className = className;
 		this.methodName = methodName;
-		this.n_LOC = n_LOC;
-		this.n_CYCLO = n_CYCLO;
-		this.n_ATFD = n_ATFD;
-		this.n_LAA = n_LAA;
-		this.is_long_method = is_long_method;
+		this.LOC = n_LOC;
+		this.CYCLO = n_CYCLO;
+		this.ATFD = n_ATFD;
+		this.LAA = n_LAA;
+		this.islongmethod = islongmethod;
 		this.iPlasma = iPlasma;
-		PMD = pMD;
-		this.is_feature_envy = is_feature_envy;
+		this.PMD = pMD;
+		this.isfeatureenvy = isfeatureenvy;
 	}
 
 
@@ -83,57 +81,57 @@ public class Method {
 	}
 
 
-	public Double getN_LOC() {
-		return n_LOC;
+	public Double getLOC() {
+		return LOC;
 	}
 
 
 	public void setN_LOC(Double n_LOC) {
-		this.n_LOC = n_LOC;
+		this.LOC = n_LOC;
 	}
 
 
-	public Double getN_CYCLO() {
-		return n_CYCLO;
+	public Double getCYCLO() {
+		return CYCLO;
 	}
 
 
 	public void setN_CYCLO(Double n_CYCLO) {
-		this.n_CYCLO = n_CYCLO;
+		this.CYCLO = n_CYCLO;
 	}
 
 
-	public Double getN_ATFD() {
-		return n_ATFD;
+	public Double getATFD() {
+		return ATFD;
 	}
 
 
 	public void setN_ATFD(Double n_ATFD) {
-		this.n_ATFD = n_ATFD;
+		this.ATFD = n_ATFD;
 	}
 
 
-	public Double getN_LAA() {
-		return n_LAA;
+	public Double getLAA() {
+		return LAA;
 	}
 
 
 	public void setN_LAA(Double n_LAA) {
-		this.n_LAA = n_LAA;
+		this.LAA = n_LAA;
 	}
 
 
-	public Boolean getIs_long_method() {
-		return is_long_method;
+	public Boolean getIslongmethod() {
+		return islongmethod;
 	}
 
 
-	public void setIs_long_method(Boolean is_long_method) {
-		this.is_long_method = is_long_method;
+	public void setIs_long_method(Boolean islongmethod) {
+		this.islongmethod = islongmethod;
 	}
 
 
-	public Boolean getiPlasma() {
+	public Boolean getIPlasma() {
 		return iPlasma;
 	}
 
@@ -153,22 +151,51 @@ public class Method {
 	}
 
 
-	public Boolean getIs_feature_envy() {
-		return is_feature_envy;
+	public Boolean getIsfeatureenvy() {
+		return isfeatureenvy;
 	}
 
 
-	public void setIs_feature_envy(Boolean is_feature_envy) {
-		this.is_feature_envy = is_feature_envy;
+	public void setIs_feature_envy(Boolean isfeatureenvy) {
+		this.isfeatureenvy = isfeatureenvy;
+	}
+	
+	
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((methodID == null) ? 0 : methodID.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Method other = (Method) obj;
+		if (methodID == null) {
+			if (other.methodID != null)
+				return false;
+		} else if (!methodID.equals(other.methodID))
+			return false;
+		return true;
 	}
 
 
 	@Override
 	public String toString() {
 		return "methodID=" + methodID + ", " + packageName + ", " + className
-				+ ", " + methodName + ", LOC=" + n_LOC + ", CYCLO=" + n_CYCLO + ", ATFD=" + n_ATFD
-				+ ", LAA=" + n_LAA + ", is_long_method=" + is_long_method + ", iPlasma=" + iPlasma + ", PMD=" + PMD
-				+ ", is_feature_envy=" + is_feature_envy;
+				+ ", " + methodName + ", LOC=" + LOC + ", CYCLO=" + CYCLO + ", ATFD=" + ATFD
+				+ ", LAA=" + LAA + ", islongmethod=" + islongmethod + ", iPlasma=" + iPlasma + ", PMD=" + PMD
+				+ ", isfeatureenvy=" + isfeatureenvy;
 	}
 	
 	

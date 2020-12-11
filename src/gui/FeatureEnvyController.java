@@ -10,11 +10,14 @@ import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import servidores.Servidor;
 
@@ -43,7 +46,15 @@ public class FeatureEnvyController implements Initializable {
 
 	@FXML
 	private Button btCancelar;
+	
+	@FXML
+	private ComboBox<String> cbTipo;
+	
+	
 
+	private ObservableList<String> tipo = FXCollections.observableArrayList("AND", "OR");
+
+	
 	public void setFeatureEnvy(FeatureEnvy obj) {
 		this.obj = obj;
 
@@ -67,7 +78,7 @@ public class FeatureEnvyController implements Initializable {
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
 		obj = getFormData();
-		if (obj.getL_ATFD() != null && obj.getL_LAA() != null && obj.getNome() != null) {
+		if (obj.getL_ATFD() != null && obj.getL_LAA() != null && obj.getNome() != null && obj.getTipo() != null) {
 			servidor.saveOrUpdate(obj);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
@@ -90,6 +101,7 @@ public class FeatureEnvyController implements Initializable {
 		obj.setL_LAA(Utils.tryParseToDouble(txtLAA.getText()));
 		obj.setL_ATFD(Utils.tryParseToDouble(txtATFD.getText()));
 		obj.setNome(txtName.getText());
+		obj.setTipo(cbTipo.getValue());
 		return obj;
 	}
 
@@ -102,7 +114,9 @@ public class FeatureEnvyController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtName, 30);
 		Constraints.setTextFieldDouble(txtLAA);
 		Constraints.setTextFieldDouble(txtATFD);
-
+		for (String s : tipo) {
+			cbTipo.getItems().add(s);
+		}
 	}
 
 	public void updateFormData() {

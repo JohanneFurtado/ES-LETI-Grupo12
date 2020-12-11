@@ -30,7 +30,7 @@
             <Label prefHeight="26.0" prefWidth="136.0" text="LAA" GridPane.rowIndex="1" />
             <TextField fx:id="txtLAA" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtATFD" prefHeight="25.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox prefHeight="25.0" prefWidth="126.0" promptText="AND OU OR" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cbTipo" prefHeight="25.0" prefWidth="126.0" promptText="AND OU OR" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtName" editable="false" GridPane.columnIndex="1" />
             <Label text="Nome" />
          </children>

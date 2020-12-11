@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,45 +23,47 @@ public class ExcelGui implements Initializable{
 	
 	private ObservableList<Method> list;
 	
+//	private static Scene mainScene;
+	
 	
 	@FXML
 	private TableView<Method> tableViewMethod;
 
 	@FXML
-	private TableColumn<Method, Double> tableColumnMethodId;
+	private TableColumn<Method, Double> tableColumnMethodId = new TableColumn<Method, Double>();
 	
 	@FXML
-	private TableColumn<Method, String> tableColumnPackage;
+	private TableColumn<Method, String> tableColumnPackage = new TableColumn<Method, String>();
 	
 	@FXML
-	private TableColumn<Method, String> tableColumnClass;
+	private TableColumn<Method, String> tableColumnClass = new TableColumn<Method, String>();
 	
 	@FXML
-	private TableColumn<Method, String> tableColumnMethod;
+	private TableColumn<Method, String> tableColumnMethod = new TableColumn<Method, String>();
 	
 	@FXML
-	private TableColumn<Method, Double> tableColumnLAA;
+	private TableColumn<Method, Double> tableColumnLAA = new TableColumn<Method, Double>();
 
 	@FXML
-	private TableColumn<Method, Double> tableColumnCYCLO;
+	private TableColumn<Method, Double> tableColumnCYCLO = new TableColumn<Method, Double>();
 
 	@FXML
-	private TableColumn<Method, Double> tableColumnLOC;
+	private TableColumn<Method, Double> tableColumnLOC = new TableColumn<Method, Double>();
 
 	@FXML
-	private TableColumn<Method, Double> tableColumnATFD;
+	private TableColumn<Method, Double> tableColumnATFD = new TableColumn<Method, Double>();
 	
 	@FXML
-	private TableColumn<Method, Boolean> tableColumnIsLongMethod;
+	private TableColumn<Method, Boolean> tableColumnIsLongMethod = new TableColumn<Method, Boolean>();
 	
 	@FXML
-	private TableColumn<Method, Boolean> tableColumnIPlasma;
+	private TableColumn<Method, Boolean> tableColumnIPlasma= new TableColumn<Method, Boolean>();
 	
 	@FXML
-	private TableColumn<Method, Boolean> tableColumnPMD;
+	private TableColumn<Method, Boolean> tableColumnPMD = new TableColumn<Method, Boolean>();
 	
 	@FXML
-	private TableColumn<Method, Boolean> tableColumnIsFeatureEnvy;
+	private TableColumn<Method, Boolean> tableColumnIsFeatureEnvy = new TableColumn<Method, Boolean>();
 	
 	
 	public void setServidor(Servidor servidor) {
@@ -73,14 +76,14 @@ public class ExcelGui implements Initializable{
 		tableColumnPackage.setCellValueFactory(new PropertyValueFactory<>("packageName"));
 		tableColumnClass.setCellValueFactory(new PropertyValueFactory<>("className"));
 		tableColumnMethod.setCellValueFactory(new PropertyValueFactory<>("methodName"));
-		tableColumnLAA.setCellValueFactory(new PropertyValueFactory<>(" n_LAA"));
-		tableColumnCYCLO.setCellValueFactory(new PropertyValueFactory<>(" n_CYCLO"));
-		tableColumnLOC.setCellValueFactory(new PropertyValueFactory<>(" n_LOC"));
-		tableColumnATFD.setCellValueFactory(new PropertyValueFactory<>(" n_ATFD"));
-		tableColumnIsLongMethod.setCellValueFactory(new PropertyValueFactory<>("is_long_method"));
+		tableColumnLAA.setCellValueFactory(new PropertyValueFactory<>("LAA"));
+		tableColumnCYCLO.setCellValueFactory(new PropertyValueFactory<>("CYCLO"));
+		tableColumnLOC.setCellValueFactory(new PropertyValueFactory<>("LOC"));
+		tableColumnATFD.setCellValueFactory(new PropertyValueFactory<>("ATFD"));
+		tableColumnIsLongMethod.setCellValueFactory(new PropertyValueFactory<>("islongmethod"));
 		tableColumnIPlasma.setCellValueFactory(new PropertyValueFactory<>("iPlasma"));
 		tableColumnPMD.setCellValueFactory(new PropertyValueFactory<>("PMD"));
-		tableColumnIsFeatureEnvy.setCellValueFactory(new PropertyValueFactory<>("is_feature_envy"));
+		tableColumnIsFeatureEnvy.setCellValueFactory(new PropertyValueFactory<>("isfeatureenvy"));
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewMethod.prefHeightProperty().bind(stage.heightProperty());
@@ -98,6 +101,12 @@ public class ExcelGui implements Initializable{
 		initializeNodes();
 		
 	}
+
+
+//	public void setScene(Scene mainScene) {
+//		this.mainScene = mainScene;
+//		
+//	}
 
 	
 	

@@ -10,11 +10,14 @@ import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import servidores.Servidor;
 
@@ -30,9 +33,6 @@ public class LongMethodController implements Initializable {
 	private TextField txtName;
 
 	@FXML
-	private TextField txtNameEdit;
-
-	@FXML
 	private TextField txtCYCLO;
 
 	@FXML
@@ -46,6 +46,12 @@ public class LongMethodController implements Initializable {
 
 	@FXML
 	private Button btCancelar;
+	
+	@FXML
+	private ComboBox<String> cbTipo;
+
+	
+	private ObservableList<String> tipo = FXCollections.observableArrayList("AND", "OR");
 
 	public void setLongMethod(LongMethod obj) {
 		this.obj = obj;
@@ -70,7 +76,7 @@ public class LongMethodController implements Initializable {
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
 		obj = getFormData();
-		if (obj.getL_CYCLO() != null && obj.getL_LOC() != null && obj.getName() != null) {
+		if (obj.getL_CYCLO() != null && obj.getL_LOC() != null && obj.getName() != null && obj.getTipo() != null) {
 			servidor.saveOrUpdate(obj);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
@@ -93,6 +99,7 @@ public class LongMethodController implements Initializable {
 		obj.setL_CYCLO(Utils.tryParseToDouble(txtCYCLO.getText()));
 		obj.setL_LOC(Utils.tryParseToDouble(txtLOC.getText()));
 		obj.setName(txtName.getText());
+		obj.setTipo(cbTipo.getValue());
 		return obj;
 	}
 
@@ -105,6 +112,9 @@ public class LongMethodController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtName, 30);
 		Constraints.setTextFieldDouble(txtCYCLO);
 		Constraints.setTextFieldDouble(txtLOC);
+		for (String s : tipo) {
+			cbTipo.getItems().add(s);
+		}
 
 	}
 

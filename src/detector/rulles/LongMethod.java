@@ -1,5 +1,6 @@
 package detector.rulles;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +11,35 @@ public class LongMethod {
 	private Double l_LOC;
 	private Double l_CYCLO;
 	private String name;
-	
-	public LongMethod() {
-		
-	}
-	
-	
-	
+	private String tipo;
 
-	public LongMethod(Double l_LOC, Double l_CYCLO, String name) {
+	private Double count = 0.0;
+	private Integer cDCI = 0;
+	private Integer cDII = 0;
+	private Integer cADCI = 0;
+	private Integer cADII = 0;
+
+	private List<Method> loc;
+	private List<Method> locRes;
+
+	public LongMethod() {
+
+	}
+
+	public LongMethod(Double l_LOC, Double l_CYCLO, String name, String tipo) {
 		super();
 		this.l_LOC = l_LOC;
 		this.l_CYCLO = l_CYCLO;
 		this.name = name;
+		this.tipo = tipo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getName() {
@@ -48,9 +65,6 @@ public class LongMethod {
 	public void setL_CYCLO(Double l_CYCLO) {
 		this.l_CYCLO = l_CYCLO;
 	}
-	
-	
-
 
 	@Override
 	public int hashCode() {
@@ -59,9 +73,6 @@ public class LongMethod {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -80,24 +91,104 @@ public class LongMethod {
 		return true;
 	}
 
-
-
-
 	public List<Method> longMethod(List<Method> soft) {
-
-		int count = 0;
-
+		System.out.println(tipo);
+		loc = new ArrayList<Method>();
+		locRes = new ArrayList<Method>();
+		count = 0.0;
 		List<Method> longMethod = new ArrayList<Method>();
-		for (Method m : soft) {
-			if (m.getN_LOC() > l_LOC && m.getN_CYCLO() > l_CYCLO) {
-				longMethod.add(m);
-				count++;
+		if (tipo.equals("AND")) {
+			for (Method m : soft) {
+				loc.add(m);
+				if (m.getCYCLO() > l_CYCLO && m.getLOC() > l_LOC) {
+					longMethod.add(m);
+					locRes.add(m);
+					count++;
+				}
+			}
+
+		} else {
+			for (Method m : soft) {
+				loc.add(m);
+				if (m.getCYCLO() > l_CYCLO || m.getLOC() > l_LOC) {
+					longMethod.add(m);
+					locRes.add(m);
+					count++;
+				}
 			}
 		}
-		System.out.println(count);
 		return longMethod;
 	}
-	
+
+	public String isIPlasma() {
+		cDCI = 0;
+		cDII = 0;
+		cADCI = 0;
+		cADII = 0;
+		for (Method test : loc) {
+			for (Method m : locRes) {
+				if (m.getMethodID().equals(test.getMethodID())) {
+					if (test.getIPlasma() == true) {
+						cDCI++;
+					}
+					if (test.getIPlasma() == false) {
+						cADII++;
+					}
+				} else {
+					if (test.getIPlasma() == true) {
+						cDII++;
+					}
+
+					if (test.getIPlasma() == false) {
+						cADCI++;
+					}
+				}
+			}
+		}
+
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		Double DCI = (cDCI * 100) / count;
+		Double DII = (count * 100) / cDII;
+		Double ADCI = (count * 100) / cADCI;
+		Double ADII = (cADII * 100) / count;
+		return "Is IPlasma: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "% ,"+"ADCI=" + df.format(ADCI) + "% ,"
+				+"ADII="+ df.format(ADII) + "%.";
+	}
+
+	public String isPMD() {
+		cDCI = 0;
+		cDII = 0;
+		cADCI = 0;
+		cADII = 0;
+		for (Method test : loc) {
+			for (Method m : locRes) {
+				if (m.getMethodID().equals(test.getMethodID())) {
+					if (test.getPMD() == true) {
+						cDCI++;
+					}
+					if (test.getPMD() == false) {
+						cADII++;
+					}
+				} else {
+					if (test.getPMD() == true) {
+						cDII++;
+					}
+
+					if (test.getPMD() == false) {
+						cADCI++;
+					}
+				}
+			}
+		}
+
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		Double DCI = (cDCI * 100) / count;
+		Double DII = (count * 100) / cDII;
+		Double ADCI = (count * 100) / cADCI;
+		Double ADII = (cADII * 100) / count;
+		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "% ,"+"ADCI=" + df.format(ADCI) + "% ,"
+				+"ADII="+ df.format(ADII) + "%.";
+	}
 	@Override
 	public String toString() {
 		return "LongMethod: name=" + name;

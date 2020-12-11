@@ -19,7 +19,7 @@ public class Excel {
 	private static final String fileName = "Defeitos.xlsx";
 	private List<Method> listMethod = new ArrayList<Method>();
 
-	private void readFile() {
+	public void readFile() {
 
 		try {
 			FileInputStream arquivo = new FileInputStream(new File(fileName));
@@ -102,7 +102,6 @@ public class Excel {
 	}
 	
 	public List<Method> allMethod(){
-		readFile();
 		return listMethod;
 	}
 }

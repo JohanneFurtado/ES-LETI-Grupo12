@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import detector.rulles.FeatureEnvy;
 import detector.rulles.LongMethod;
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,7 @@ public class ResultController implements Initializable {
 	private Object obj;
 
 	@FXML
-	private TableView<Method> tableViewMethod;
+	private TableView<Method> tableViewMethod = new TableView<Method>();
 
 	@FXML
 	private TableColumn<Method, Double> tableColumnMethodId;
@@ -44,6 +45,12 @@ public class ResultController implements Initializable {
 
 	@FXML
 	private Button btQualidade;
+	
+	@FXML
+	private Button btIPlasma;
+	
+	@FXML
+	private Button btPMD;
 
 	@FXML
 	private Button btClose;
@@ -52,12 +59,28 @@ public class ResultController implements Initializable {
 
 	@FXML
 	private void onBtQualidade(ActionEvent event) {
-
+		if (obj instanceof FeatureEnvy) {
+			labelResultQua.setText(((FeatureEnvy) obj).isfeatureEnvyDet());
+		}
+	}
+	
+	@FXML
+	private void onBtIPlasma(ActionEvent event) {
+		if (obj instanceof LongMethod) {
+			labelResultQua.setText(((LongMethod) obj).isIPlasma());
+		}
+	}
+	
+	@FXML
+	private void onBtPMD(ActionEvent event) {
+		if (obj instanceof LongMethod) {
+			labelResultQua.setText(((LongMethod) obj).isPMD());
+		}
 	}
 
 	@FXML
 	private void onBtClose(ActionEvent event) {
-
+		Utils.currentStage(event).close();
 	}
 
 	@Override
@@ -66,47 +89,33 @@ public class ResultController implements Initializable {
 	}
 
 	private void initializeNodes() {
-		servidor.setResult(this);
-		
-		if (obj instanceof LongMethod) {
-			labelNome.setText(((LongMethod) obj).getName());
-			
-		}
-		if (obj instanceof FeatureEnvy) {
-			labelNome.setText(((FeatureEnvy) obj).getNome());
-		}
-		
-		
-		
+
 		tableColumnMethodId.setCellValueFactory(new PropertyValueFactory<>("methodID"));
 		tableColumnMethod.setCellValueFactory(new PropertyValueFactory<>("methodName"));
-		
+
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewMethod.prefHeightProperty().bind(stage.heightProperty());
-		
-		resultTableViewMethod();
-		
 	}
 
-	private void resultTableViewMethod() {
+	public void resultTableViewMethod() {
 		if (obj == null) {
 			throw new IllegalStateException("Regra não identificado");
 		}
 
-		
 		if (obj instanceof LongMethod) {
-			List<Method> list = servidor.findAllMethodToLongMethod((LongMethod) obj);
+			labelNome.setText(((LongMethod) obj).getName());
+			List<Method> list = ((LongMethod) obj).longMethod(servidor.findAllMethod());
 			mtdList = FXCollections.observableArrayList(list);
 			tableViewMethod.setItems(mtdList);
 		}
-		
+
 		if (obj instanceof FeatureEnvy) {
-			List<Method> list = servidor.findAllMethodToFeatureEnvy((FeatureEnvy) obj);
+			labelNome.setText(((FeatureEnvy) obj).getNome());
+			List<Method> list = ((FeatureEnvy) obj).feature_envy(servidor.findAllMethod());
 			mtdList = FXCollections.observableArrayList(list);
 			tableViewMethod.setItems(mtdList);
 		}
 	}
-	
 
 	public void setService(Servidor servidor) {
 		this.servidor = servidor;

@@ -33,11 +33,13 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	private Button btView;
+	
+	private Servidor service = new Servidor();
 
 	@FXML
 	public void onMenuItemLongMethod() {
 		loadView("/gui/LongMethod.fxml", (LongMethodListController controller) -> {
-			controller.setService(new Servidor());
+			controller.setService(service);
 			controller.updateTableView();
 		});
 	}
@@ -45,7 +47,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemFeatureEnvy() {
 		loadView("/gui/FeatureEnvy.fxml", (FeatureEnvyListController controller) -> {
-			controller.setService(new Servidor());
+			controller.setService(service);
 			controller.updateTableView();
 		});
 	}
@@ -59,9 +61,16 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onBtView(ActionEvent event) {
 		
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ExcelGUI.fxml"));
-			Pane Pane = loader.load();
+		loadView("/gui/ExcelGUI.fxml", (ExcelGui controller) -> {
+			controller.setServidor(service);
+			controller.updateTableView();
+		});
+		
+//		try {
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ExcelGUI.fxml"));
+//			Pane Pane = loader.load();
+//			
+//			Scene mainScene = new Scene(Pane);
 		/*
 		 * 
 		 * fiquei parado aqui
@@ -78,19 +87,20 @@ public class MainViewController implements Initializable {
 		 * vemos a noite.	
 		 */
 //			ExcelGui ex = new ExcelGui();
-//			ex.setServidor(new Servidor());
+//			ex.setServidor(service);
+//			ex.setScene(mainScene);
+//			
+//			
+//			Stage primaryStage = new Stage();
+//			primaryStage.setScene(mainScene);
+//			primaryStage.setTitle("Code Smells-Excel");
+//			primaryStage.show();
 //			ex.updateTableView();
-			
-			Scene mainScene = new Scene(Pane);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(mainScene);
-			primaryStage.setTitle("Code Smells-Excel");
-			primaryStage.show();			
-		}catch (IOException e) {
-			e.getMessage();
-		}catch (RuntimeException ex) {
-			ex.getMessage();
-		}
+//		}catch (IOException e) {
+//			e.getMessage();
+//		}catch (RuntimeException ex) {
+//			ex.getMessage();
+//		}
 	}
 
 	@Override

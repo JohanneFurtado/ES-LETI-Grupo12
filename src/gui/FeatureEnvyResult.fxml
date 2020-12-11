@@ -16,7 +16,10 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="labelNome" prefHeight="17.0" prefWidth="130.0" />
+      <Label fx:id="labelNome" prefHeight="17.0" prefWidth="130.0" textFill="#6b1c08">
+         <font>
+            <Font name="Bodoni MT Italic" size="23.0" />
+         </font></Label>
       <TableView fx:id="tableViewMethod" prefHeight="337.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="tableColumnMethodId" prefWidth="95.0" text="MethodID" />
@@ -26,12 +29,12 @@
       <ToolBar prefHeight="59.0" prefWidth="564.0">
          <items>
           <Button fx:id="btQualidade" mnemonicParsing="false" onAction="#onBtQualidade" prefHeight="25.0" prefWidth="96.0" text="Qualidade" />
-            <Label fx:id="labelResultQua" contentDisplay="CENTER" prefHeight="48.0" prefWidth="412.0" textOverrun="WORD_ELLIPSIS">
+            <Label fx:id="labelResultQua" contentDisplay="CENTER" prefHeight="48.0" prefWidth="416.0" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <padding>
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button fx:id="btClose" mnemonicParsing="false" onAction="#onBtClose" text="Close" />
+            <Button fx:id="btClose" mnemonicParsing="false" onAction="#onBtClose" text="Fechar" />
          </items>
       </ToolBar>
    </children>
