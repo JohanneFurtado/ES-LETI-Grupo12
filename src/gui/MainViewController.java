@@ -29,6 +29,9 @@ public class MainViewController implements Initializable {
 	private MenuItem menuFeatureEnvy;
 	
 	@FXML
+	private MenuItem menuPrincipal;
+	
+	@FXML
 	private Button btView;
 
 	@FXML
@@ -41,11 +44,17 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemFeatureEnvy() {
-		loadView("/gui/FeatureEnvy.fxml", (LongMethodListController controller) -> {
+		loadView("/gui/FeatureEnvy.fxml", (FeatureEnvyListController controller) -> {
 			controller.setService(new Servidor());
 			controller.updateTableView();
 		});
 	}
+	
+	@FXML
+	public void onMenuItemPrincipal() {
+		loadView("/gui/MainView.fxml",x -> {});
+	}
+	
 	
 	@FXML
 	public void onBtView(ActionEvent event) {
@@ -68,9 +77,9 @@ public class MainViewController implements Initializable {
 		 * 
 		 * vemos a noite.	
 		 */
-			ExcelGui ex = new ExcelGui();
-			ex.setServidor(new Servidor());
-			ex.updateTableView();
+//			ExcelGui ex = new ExcelGui();
+//			ex.setServidor(new Servidor());
+//			ex.updateTableView();
 			
 			Scene mainScene = new Scene(Pane);
 			Stage primaryStage = new Stage();

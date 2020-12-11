@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.Main;
-import detector.rulles.LongMethod;
+import detector.rulles.FeatureEnvy;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -31,29 +31,29 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import servidores.Servidor;
 
-public class LongMethodListController implements Initializable, DataChangeListener {
+public class FeatureEnvyListController implements Initializable, DataChangeListener {
 
 	private Servidor servidor;
 
 	@FXML
-	private TableView<LongMethod> tableViewLongMethod;
+	private TableView<FeatureEnvy> tableViewFeatureEnvy;
 
 	@FXML
-	private TableColumn<LongMethod, String> tableColumnName;
+	private TableColumn<FeatureEnvy, String> tableColumnName;
 
 	@FXML
-	private TableColumn<LongMethod, LongMethod> tableColumnEDIT;
+	private TableColumn<FeatureEnvy, FeatureEnvy> tableColumnEDIT;
 
 	@FXML
-	private TableColumn<LongMethod, LongMethod> tableColumnREMOVE;
+	private TableColumn<FeatureEnvy, FeatureEnvy> tableColumnREMOVE;
 
 	@FXML
-	private TableColumn<LongMethod, LongMethod> tableColumnAPLAY;
+	private TableColumn<FeatureEnvy, FeatureEnvy> tableColumnAPLAY;
 
 	@FXML
 	private Button btNew;
 
-	private ObservableList<LongMethod> obsList;
+	private ObservableList<FeatureEnvy> obsList;
 
 	public void setService(Servidor servidor) {
 		this.servidor = servidor;
@@ -68,7 +68,7 @@ public class LongMethodListController implements Initializable, DataChangeListen
 	@FXML
 	public void onBtNew(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogFrom("/gui/LongMethodNew.fxml", parentStage);
+		createDialogFrom("/gui/FeatureEnvyNew.fxml", parentStage);
 	}
 
 	private void createDialogFrom(String absoluto, Stage parentStage) {
@@ -77,9 +77,9 @@ public class LongMethodListController implements Initializable, DataChangeListen
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluto));
 			Pane pane = loader.load();
 
-			servidor.setLongMethod(this);
+			servidor.setFeatureEnvy(this);
 
-			LongMethodController controller = loader.getController();
+			FeatureEnvyController controller = loader.getController();
 			controller.setService(servidor);
 			
 			Stage dialogStage = new Stage();
@@ -95,13 +95,13 @@ public class LongMethodListController implements Initializable, DataChangeListen
 		}
 	}
 	
-	private void createDialogFromAplay(LongMethod obj ,String absoluto, Stage parentStage) {
+	private void createDialogFromAplay(FeatureEnvy obj ,String absoluto, Stage parentStage) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluto));
 			Pane pane = loader.load();
 
-			servidor.setLongMethod(this);
+			servidor.setFeatureEnvy(this);
 			
 			ResultController controller = new ResultController();
 			controller.setObject(obj);
@@ -120,16 +120,16 @@ public class LongMethodListController implements Initializable, DataChangeListen
 		}
 	}
 
-	private void createDialogFromEdit(LongMethod obj, String absoluto, Stage parentStage) {
+	private void createDialogFromEdit(FeatureEnvy obj, String absoluto, Stage parentStage) {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluto));
 			Pane pane = loader.load();
 			
-			servidor.setLongMethod(this);
+			servidor.setFeatureEnvy(this);
 
-			LongMethodController controller = loader.getController();
-			controller.setLongMethod(obj);
+			FeatureEnvyController controller = loader.getController();
+			controller.setFeatureEnvy(obj);
 			controller.setService(servidor);
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
@@ -148,10 +148,10 @@ public class LongMethodListController implements Initializable, DataChangeListen
 	}
 
 	private void initializeNodes() {
-		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
-		tableViewLongMethod.prefHeightProperty().bind(stage.heightProperty());
+		tableViewFeatureEnvy.prefHeightProperty().bind(stage.heightProperty());
 
 	}
 
@@ -161,9 +161,9 @@ public class LongMethodListController implements Initializable, DataChangeListen
 	}
 
 	public void updateTableView() {
-		List<LongMethod> list = servidor.findAllLongMethod();
+		List<FeatureEnvy> list = servidor.findAllFeatureEnvy();
 		obsList = FXCollections.observableArrayList(list);
-		tableViewLongMethod.setItems(obsList);
+		tableViewFeatureEnvy.setItems(obsList);
 		initEditButtons();
 		initRemoveButtons();
 		initAplayButtons();
@@ -171,11 +171,11 @@ public class LongMethodListController implements Initializable, DataChangeListen
 
 	private void initRemoveButtons() {
 		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColumnREMOVE.setCellFactory(param -> new TableCell<LongMethod, LongMethod>() {
+		tableColumnREMOVE.setCellFactory(param -> new TableCell<FeatureEnvy, FeatureEnvy>() {
 			private final Button button = new Button("remover");
 
 			@Override
-			protected void updateItem(LongMethod obj, boolean empty) {
+			protected void updateItem(FeatureEnvy obj, boolean empty) {
 				super.updateItem(obj, empty);
 				if (obj == null) {
 					setGraphic(null);
@@ -187,7 +187,7 @@ public class LongMethodListController implements Initializable, DataChangeListen
 		});
 	}
 
-	private void removeEntity(LongMethod obj) {
+	private void removeEntity(FeatureEnvy obj) {
 		Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Tens a certeza que queres apagar?");
 
 		if (result.get() == ButtonType.OK) {
@@ -195,7 +195,7 @@ public class LongMethodListController implements Initializable, DataChangeListen
 				throw new IllegalStateException("Service was null");
 			}
 			try {
-				servidor.setLongMethod(this);
+				servidor.setFeatureEnvy(this);
 				servidor.remove(obj);
 				updateTableView();
 			} catch (RuntimeException e) {
@@ -206,11 +206,11 @@ public class LongMethodListController implements Initializable, DataChangeListen
 
 	private void initEditButtons() {
 		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColumnEDIT.setCellFactory(param -> new TableCell<LongMethod, LongMethod>() {
+		tableColumnEDIT.setCellFactory(param -> new TableCell<FeatureEnvy, FeatureEnvy>() {
 			private final Button button = new Button("editar");
 
 			@Override
-			protected void updateItem(LongMethod obj, boolean empty) {
+			protected void updateItem(FeatureEnvy obj, boolean empty) {
 				super.updateItem(obj, empty);
 				if (obj == null) {
 					setGraphic(null);
@@ -218,18 +218,18 @@ public class LongMethodListController implements Initializable, DataChangeListen
 				}
 				setGraphic(button);
 				button.setOnAction(
-						event -> createDialogFromEdit(obj,"/gui/LongMethodEdit.fxml", Utils.currentStage(event)));
+						event -> createDialogFromEdit(obj,"/gui/FeatureEnvyEdit.fxml", Utils.currentStage(event)));
 			}
 		});
 	}
 
 	private void initAplayButtons() {
 		tableColumnAPLAY.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-		tableColumnAPLAY.setCellFactory(param -> new TableCell<LongMethod, LongMethod>() {
+		tableColumnAPLAY.setCellFactory(param -> new TableCell<FeatureEnvy, FeatureEnvy>() {
 			private final Button button = new Button("aplay");
 
 			@Override
-			protected void updateItem(LongMethod obj, boolean empty) {
+			protected void updateItem(FeatureEnvy obj, boolean empty) {
 				super.updateItem(obj, empty);
 				if (obj == null) {
 					setGraphic(null);
@@ -237,7 +237,7 @@ public class LongMethodListController implements Initializable, DataChangeListen
 				}
 				setGraphic(button);
 				button.setOnAction(
-						event -> createDialogFromAplay(obj ,"/gui/LongMethodResult.fxml", Utils.currentStage(event)));
+						event -> createDialogFromAplay(obj ,"/gui/FeatureEnvyResult.fxml", Utils.currentStage(event)));
 			}
 		});
 	}

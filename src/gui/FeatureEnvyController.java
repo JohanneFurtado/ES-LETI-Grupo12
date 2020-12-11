@@ -30,9 +30,6 @@ public class FeatureEnvyController implements Initializable {
 	private TextField txtName;
 
 	@FXML
-	private TextField txtNameEdit;
-
-	@FXML
 	private TextField txtLAA;
 
 	@FXML
