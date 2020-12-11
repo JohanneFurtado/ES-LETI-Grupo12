@@ -229,7 +229,7 @@ public class LongMethodListController implements Initializable, DataChangeListen
 	private void initAplayButtons() {
 		tableColumnAPLAY.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnAPLAY.setCellFactory(param -> new TableCell<LongMethod, LongMethod>() {
-			private final Button button = new Button("aplay");
+			private final Button button = new Button("aplicar");
 
 			@Override
 			protected void updateItem(LongMethod obj, boolean empty) {

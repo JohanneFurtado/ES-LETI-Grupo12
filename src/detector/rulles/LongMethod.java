@@ -14,6 +14,7 @@ public class LongMethod {
 	private String tipo;
 
 	private Double count = 0.0;
+	private Integer acerto = 0;
 	private Integer cDCI = 0;
 	private Integer cDII = 0;
 	private Integer cADCI = 0;
@@ -92,7 +93,6 @@ public class LongMethod {
 	}
 
 	public List<Method> longMethod(List<Method> soft) {
-		System.out.println(tipo);
 		loc = new ArrayList<Method>();
 		locRes = new ArrayList<Method>();
 		count = 0.0;
@@ -186,9 +186,25 @@ public class LongMethod {
 		Double DII = (count * 100) / cDII;
 		Double ADCI = (count * 100) / cADCI;
 		Double ADII = (cADII * 100) / count;
-		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "% ,"+"ADCI=" + df.format(ADCI) + "% ,"
+		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "%, "+"ADCI=" + df.format(ADCI) + "%, "
 				+"ADII="+ df.format(ADII) + "%.";
 	}
+	public String islongMethod() {
+		acerto = 0;
+		for(Method m : locRes) {
+			for(Method test : loc) {
+				if(m.getMethodID().equals(test.getMethodID())) {
+					if(test.getIslongmethod() == true) {
+						acerto++;
+					}
+				}
+			}
+		}
+		DecimalFormat df = new DecimalFormat("###,##0.00"); 
+		Double perc = (acerto * 100 ) / count;
+		return "Is-Long Method: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count;
+	}
+	
 	@Override
 	public String toString() {
 		return "LongMethod: name=" + name;

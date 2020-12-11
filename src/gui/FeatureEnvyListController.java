@@ -200,7 +200,6 @@ public class FeatureEnvyListController implements Initializable, DataChangeListe
 			try {
 				servidor.setFeatureEnvy(this);
 				servidor.remove(obj);
-				updateTableView();
 			} catch (RuntimeException e) {
 				Alerts.showAlert("Error removing object", null, e.getMessage(), AlertType.ERROR);
 			}
@@ -229,7 +228,7 @@ public class FeatureEnvyListController implements Initializable, DataChangeListe
 	private void initAplayButtons() {
 		tableColumnAPLAY.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnAPLAY.setCellFactory(param -> new TableCell<FeatureEnvy, FeatureEnvy>() {
-			private final Button button = new Button("aplay");
+			private final Button button = new Button("aplicar");
 
 			@Override
 			protected void updateItem(FeatureEnvy obj, boolean empty) {

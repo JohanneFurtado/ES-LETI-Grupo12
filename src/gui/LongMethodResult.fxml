@@ -28,9 +28,10 @@
       </TableView>
       <ToolBar prefHeight="84.0" prefWidth="600.0">
          <items>
+            <Button fx:id="btQualidade" mnemonicParsing="false" onAction="#onBtQualidade" text="Qualidade" />
             <Button fx:id="btIPlasma" mnemonicParsing="false" onAction="#onBtIPlasma" text="IPlasma" />
           <Button fx:id="btPMD" mnemonicParsing="false" onAction="#onBtPMD" prefHeight="25.0" prefWidth="67.0" text="PMD" />
-            <Label fx:id="labelResultQua" nodeOrientation="LEFT_TO_RIGHT" prefHeight="79.0" prefWidth="387.0" textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" wrapText="true">
+            <Label fx:id="labelResultQua" nodeOrientation="LEFT_TO_RIGHT" prefHeight="79.0" prefWidth="316.0" textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <padding>
                   <Insets left="30.0" />
                </padding>

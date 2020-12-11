@@ -16,6 +16,11 @@ public class FeatureEnvy {
 	private Double count = 0.0;
 	private Integer acerto = 0;
 	
+	private Integer cDCI = 0;
+	private Integer cDII = 0;
+	private Integer cADCI = 0;
+	private Integer cADII = 0;
+	
 	private List<Method> loc;
 	private List<Method> locRes;
 
@@ -136,5 +141,75 @@ public class FeatureEnvy {
 		DecimalFormat df = new DecimalFormat("###,##0.00"); 
 		Double perc = (acerto * 100 ) / count;
 		return "Is-FeatureEnvy: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count;
+	}
+	
+	public String isIPlasma() {
+		cDCI = 0;
+		cDII = 0;
+		cADCI = 0;
+		cADII = 0;
+		for (Method test : loc) {
+			for (Method m : locRes) {
+				if (m.getMethodID().equals(test.getMethodID())) {
+					if (test.getIPlasma() == true) {
+						cDCI++;
+					}
+					if (test.getIPlasma() == false) {
+						cADII++;
+					}
+				} else {
+					if (test.getIPlasma() == true) {
+						cDII++;
+					}
+
+					if (test.getIPlasma() == false) {
+						cADCI++;
+					}
+				}
+			}
+		}
+
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		Double DCI = (cDCI * 100) / count;
+		Double DII = (count * 100) / cDII;
+		Double ADCI = (count * 100) / cADCI;
+		Double ADII = (cADII * 100) / count;
+		return "Is IPlasma: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "% ,"+"ADCI=" + df.format(ADCI) + "% ,"
+				+"ADII="+ df.format(ADII) + "%.";
+	}
+
+	public String isPMD() {
+		cDCI = 0;
+		cDII = 0;
+		cADCI = 0;
+		cADII = 0;
+		for (Method test : loc) {
+			for (Method m : locRes) {
+				if (m.getMethodID().equals(test.getMethodID())) {
+					if (test.getPMD() == true) {
+						cDCI++;
+					}
+					if (test.getPMD() == false) {
+						cADII++;
+					}
+				} else {
+					if (test.getPMD() == true) {
+						cDII++;
+					}
+
+					if (test.getPMD() == false) {
+						cADCI++;
+					}
+				}
+			}
+		}
+
+		DecimalFormat df = new DecimalFormat("###,##0.00");
+		Double DCI = (cDCI * 100) / count;
+		Double DII = (count * 100) / cDII;
+		Double ADCI = (count * 100) / cADCI;
+		Double ADII = (cADII * 100) / count;
+		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "%, "+"ADCI=" + df.format(ADCI) + "%, "
+				+"ADII="+ df.format(ADII) + "%.";
 	}
 }

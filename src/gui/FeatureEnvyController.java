@@ -82,7 +82,7 @@ public class FeatureEnvyController implements Initializable {
 			servidor.saveOrUpdate(obj);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
-			Alerts.showAlert("Novo/Edição FeatureEnvy", obj.getNome(), "Operacao bem sucedida", AlertType.CONFIRMATION);
+			Alerts.showAlert("Novo/Edição FeatureEnvy", obj.getNome(), "Operacao bem sucedida", AlertType.INFORMATION);
 
 		} else {
 			Alerts.showAlert("Erro", "existencia de ponto nulo", "Long Method Indefinido", AlertType.ERROR);

@@ -62,6 +62,10 @@ public class ResultController implements Initializable {
 		if (obj instanceof FeatureEnvy) {
 			labelResultQua.setText(((FeatureEnvy) obj).isfeatureEnvyDet());
 		}
+		
+		if (obj instanceof LongMethod) {
+			labelResultQua.setText(((LongMethod) obj).islongMethod());
+		}
 	}
 	
 	@FXML
@@ -69,12 +73,20 @@ public class ResultController implements Initializable {
 		if (obj instanceof LongMethod) {
 			labelResultQua.setText(((LongMethod) obj).isIPlasma());
 		}
+		
+		if (obj instanceof FeatureEnvy) {
+			labelResultQua.setText(((FeatureEnvy) obj).isIPlasma());
+		}
 	}
 	
 	@FXML
 	private void onBtPMD(ActionEvent event) {
 		if (obj instanceof LongMethod) {
 			labelResultQua.setText(((LongMethod) obj).isPMD());
+		}
+		
+		if (obj instanceof FeatureEnvy) {
+			labelResultQua.setText(((FeatureEnvy) obj).isPMD());
 		}
 	}
 

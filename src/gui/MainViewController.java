@@ -15,9 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import servidores.Servidor;
 
 public class MainViewController implements Initializable {
@@ -26,10 +24,18 @@ public class MainViewController implements Initializable {
 	private MenuItem menuLongMethod;
 	
 	@FXML
+	private MenuItem menuAbout;
+	
+	@FXML
+	private MenuItem menuAboutLongMethod;
+	
+	@FXML
 	private MenuItem menuFeatureEnvy;
 	
 	@FXML
-	private MenuItem menuPrincipal;
+	private MenuItem menuAboutFeatureEnvy;
+	
+
 	
 	@FXML
 	private Button btView;
@@ -53,8 +59,18 @@ public class MainViewController implements Initializable {
 	}
 	
 	@FXML
-	public void onMenuItemPrincipal() {
-		loadView("/gui/MainView.fxml",x -> {});
+	public void onMenuItemAboutLongMethod() {
+		loadView("/gui/AboutLongMethod.fxml",x -> {});
+	}
+	
+	@FXML
+	public void onMenuItemAboutFeatureEnvy() {
+		loadView("/gui/AboutFeatureEnvy.fxml",x -> {});
+	}
+	
+	@FXML
+	public void onMenuItemAbout() {
+		loadView("/gui/About.fxml",x -> {});
 	}
 	
 	
@@ -65,42 +81,6 @@ public class MainViewController implements Initializable {
 			controller.setServidor(service);
 			controller.updateTableView();
 		});
-		
-//		try {
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ExcelGUI.fxml"));
-//			Pane Pane = loader.load();
-//			
-//			Scene mainScene = new Scene(Pane);
-		/*
-		 * 
-		 * fiquei parado aqui
-		 * acho que o eclipse esta cansado
-		 * 
-		 * pergunta ao stor o porque que isso não da erro e tambem não funciona
-		 * 
-		 * se eu usar o meu alert para indicar o erro, é demonstrado apenas o caminho do ExcelGUI.
-		 * 
-		 * já fiz o long method, é so seguir o modelo consegues fazer o do Feature Envy
-		 * 
-		 * Diz ao stor para configurar o maven para poder correr o projeto no maven
-		 * 
-		 * vemos a noite.	
-		 */
-//			ExcelGui ex = new ExcelGui();
-//			ex.setServidor(service);
-//			ex.setScene(mainScene);
-//			
-//			
-//			Stage primaryStage = new Stage();
-//			primaryStage.setScene(mainScene);
-//			primaryStage.setTitle("Code Smells-Excel");
-//			primaryStage.show();
-//			ex.updateTableView();
-//		}catch (IOException e) {
-//			e.getMessage();
-//		}catch (RuntimeException ex) {
-//			ex.getMessage();
-//		}
 	}
 
 	@Override

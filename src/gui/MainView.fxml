@@ -20,15 +20,15 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Principal">
                   <items>
-                    <MenuItem fx:id="menuPrincipal" mnemonicParsing="false" onAction="#onMenuItemPrincipal" text="Principal" />
                         <MenuItem fx:id="menuLongMethod" mnemonicParsing="false" onAction="#onMenuItemLongMethod" text="Long Method" />
                     <MenuItem fx:id="menuFeatureEnvy" mnemonicParsing="false" onAction="#onMenuItemFeatureEnvy" text="Feature Envy" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="About">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Long Method" />
-                        <MenuItem mnemonicParsing="false" text="Feature Envy" />
+                        <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#onMenuItemAbout" text="About" />
+                    <MenuItem fx:id="menuAboutLongMethod" mnemonicParsing="false" onAction="#onMenuItemAboutLongMethod" text="Long Method" />
+                        <MenuItem fx:id="menuAboutFeatureEnvy" mnemonicParsing="false" onAction="#onMenuItemAboutFeatureEnvy" text="Feature Envy" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false">
@@ -52,7 +52,7 @@
                   </Lighting>
                </effect>
             </MenuBar>
-            <Label alignment="CENTER" prefHeight="360.0" prefWidth="596.0" text="Code Smell" textFill="#09110a">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="363.0" prefWidth="598.0" text="Code Smell" textAlignment="CENTER" textFill="#09110a">
                <font>
                   <Font name="Algerian" size="96.0" />
                </font>
