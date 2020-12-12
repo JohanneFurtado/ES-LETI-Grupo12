@@ -212,4 +212,9 @@ public class FeatureEnvy {
 		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "%, "+"ADCI=" + df.format(ADCI) + "%, "
 				+"ADII="+ df.format(ADII) + "%.";
 	}
+
+	public Object getLocRes() {
+		// TODO Auto-generated method stub
+		return locRes;
+	}
 }

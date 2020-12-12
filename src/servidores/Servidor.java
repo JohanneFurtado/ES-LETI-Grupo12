@@ -18,11 +18,16 @@ public class Servidor {
 	private List<Method> featureEnvyResult = new ArrayList<Method>();
 	
 	
-	private Excel excel;
+	private  Excel excel;
+	
 	
 	public Servidor(){
 		excel = new Excel();
 		excel.readFile();
+	}
+	
+	public static void  read() {
+		
 	}
 	
 
@@ -55,6 +60,7 @@ public class Servidor {
 		longMethodListController.updateTableView();
 	}
 
+	
 	public void saveOrUpdate(FeatureEnvy obj) {
 		for (FeatureEnvy lM : featureEnvyList) {
 			if (lM.getNome().equals(obj.getNome())) {

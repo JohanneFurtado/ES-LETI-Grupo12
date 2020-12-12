@@ -14,13 +14,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import software.Method;
 
+
 public class Excel {
 
-	private static final String fileName = "Defeitos.xlsx";
-	private List<Method> listMethod = new ArrayList<Method>();
+	private  final String fileName = "Defeitos.xlsx";
+	private  List<Method> listMethod = new ArrayList<Method>();
 
-	public void readFile() {
-
+	
+	public  void readFile() {
 		try {
 			FileInputStream arquivo = new FileInputStream(new File(fileName));
 
@@ -89,6 +90,7 @@ public class Excel {
 			e.getMessage();
 		}
 	}
+
 
 	
 	public void view() {

@@ -67,6 +67,10 @@ public class LongMethod {
 		this.l_CYCLO = l_CYCLO;
 	}
 
+	public List<Method> getLocRes(){
+		return locRes;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
