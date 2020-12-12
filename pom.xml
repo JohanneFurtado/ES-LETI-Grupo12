@@ -23,6 +23,14 @@
 			<version>15.0.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.gitlab.cdc-java.util/cdc-util-txt -->
+		<dependency>
+			<groupId>com.gitlab.cdc-java.util</groupId>
+			<artifactId>cdc-util-txt</artifactId>
+			<version>0.2.0</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<build>

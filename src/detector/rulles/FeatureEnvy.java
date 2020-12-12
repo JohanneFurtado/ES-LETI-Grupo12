@@ -60,10 +60,7 @@ public class FeatureEnvy {
 		this.nome = nome;
 	}
 
-	@Override
-	public String toString() {
-		return "FeatureEnvy [l_ATFD=" + l_ATFD + ", l_LAA=" + l_LAA + ", nome=" + nome + "]";
-	}
+
 
 	@Override
 	public int hashCode() {
@@ -105,7 +102,8 @@ public class FeatureEnvy {
 				}
 			}
 			
-		} else {
+		} 
+		if(tipo.equals("OR")){
 			for (Method m : aux) {
 				loc.add(m);
 				if (m.getATFD() > l_ATFD || m.getLAA() > l_LAA) {
@@ -140,7 +138,7 @@ public class FeatureEnvy {
 		}
 		DecimalFormat df = new DecimalFormat("###,##0.00"); 
 		Double perc = (acerto * 100 ) / count;
-		return "Is-FeatureEnvy: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count;
+		return "Is-FeatureEnvy: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count + " considerados.";
 	}
 	
 	public String isIPlasma() {
@@ -216,5 +214,10 @@ public class FeatureEnvy {
 	public Object getLocRes() {
 		// TODO Auto-generated method stub
 		return locRes;
+	}
+	
+	@Override
+	public String toString() {
+		return nome + " " + l_ATFD + " " + l_LAA  + " " + tipo;
 	}
 }

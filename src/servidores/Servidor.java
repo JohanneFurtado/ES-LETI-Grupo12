@@ -8,7 +8,9 @@ import detector.rulles.LongMethod;
 import gui.FeatureEnvyListController;
 import gui.LongMethodListController;
 import gui.ResultController;
-import read_write_Excel.Excel;
+import read_write.Excel;
+import read_write.FeatureEnvyTXT;
+import read_write.LongMethodTXT;
 import software.Method;
 
 public class Servidor {
@@ -19,15 +21,22 @@ public class Servidor {
 	
 	
 	private  Excel excel;
+	private LongMethodTXT lMtxt;
+	private FeatureEnvyTXT fEtxt;
 	
 	
 	public Servidor(){
 		excel = new Excel();
+		lMtxt = new LongMethodTXT();
+		fEtxt = new FeatureEnvyTXT();
+		
+		
 		excel.readFile();
+		longMethodList = lMtxt.leitor();
+		featureEnvyList = fEtxt.leitor();
 	}
 	
-	public static void  read() {
-		
+	public void  writeLMtxt() {
 	}
 	
 
@@ -53,10 +62,12 @@ public class Servidor {
 				lM.setL_CYCLO(obj.getL_CYCLO());
 				lM.setL_LOC(obj.getL_LOC());
 				lM.setTipo(obj.getTipo());
+				lMtxt.escritor(longMethodList);
 				return;
 			}
 		}
 		longMethodList.add(obj);
+		lMtxt.escritor(longMethodList);
 		longMethodListController.updateTableView();
 	}
 
@@ -67,10 +78,12 @@ public class Servidor {
 				lM.setL_ATFD(obj.getL_ATFD());
 				lM.setL_LAA(obj.getL_LAA());
 				lM.setTipo(obj.getTipo());
+				fEtxt.escritor(featureEnvyList);
 				return;
 			}
 		}
 		featureEnvyList.add(obj);
+		fEtxt.escritor(featureEnvyList);
 		featureEnvyListController.updateTableView();
 		
 		
@@ -80,6 +93,7 @@ public class Servidor {
 		for (LongMethod lM : longMethodList) {
 			if (lM.getName().equals(obj.getName())) {
 				longMethodList.remove(obj);
+				lMtxt.escritor(longMethodList);
 				longMethodListController.updateTableView();
 			}
 		}
@@ -90,6 +104,7 @@ public class Servidor {
 		for (FeatureEnvy lM : featureEnvyList) {
 			if (lM.getNome().equals(obj.getNome())) {
 				featureEnvyList.remove(obj);
+				fEtxt.escritor(featureEnvyList);
 				featureEnvyListController.updateTableView();
 			}
 		}

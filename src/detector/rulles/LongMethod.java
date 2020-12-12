@@ -111,7 +111,8 @@ public class LongMethod {
 				}
 			}
 
-		} else {
+		}
+		if(tipo.equals("OR")) {
 			for (Method m : soft) {
 				loc.add(m);
 				if (m.getCYCLO() > l_CYCLO || m.getLOC() > l_LOC) {
@@ -208,10 +209,12 @@ public class LongMethod {
 		Double perc = (acerto * 100 ) / count;
 		return "Is-Long Method: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "LongMethod: name=" + name;
+		return  name + " " + l_LOC + " " + l_CYCLO  + " " + tipo;
 	}
+	
+	
 
 }

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import detector.rulles.FeatureEnvy;
-import read_write_Excel.Excel;
+import read_write.Excel;
 import software.Method;
 
 class FeatureEnvyTest {

@@ -1,0 +1,4 @@
+nome 90.0 0.0 AND
+no 30.0 10.0 AND
+notde 10.0 80.0 AND
+novo 100.0 30.0 AND

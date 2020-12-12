@@ -1,4 +1,4 @@
-package read_write_Excel;
+package read_write;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import read_write_Excel.Excel;
+import read_write.Excel;
 
 class ExcelTest {
 	
