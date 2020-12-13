@@ -6,8 +6,18 @@ import java.util.List;
 
 import software.Method;
 
+/**
+ * 
+ * @author gatun
+ *
+ */
 public class FeatureEnvy {
 
+	/**
+	 * 
+	 * Atributos
+	 * 
+	 */
 	private Double l_ATFD;
 	private Double l_LAA;
 	private String nome;
@@ -21,13 +31,28 @@ public class FeatureEnvy {
 	private Integer cADCI = 0;
 	private Integer cADII = 0;
 	
+	/**
+	 * Lista dos Methods locais
+	 */
 	private List<Method> loc;
 	private List<Method> locRes;
+	
 
+	/**
+	 * Construtor 
+	 * sem parametro
+	 */
 	public FeatureEnvy() {
 
 	}
 
+	/**
+	 * Construtor
+	 * @param l_ATFD
+	 * @param l_LAA
+	 * @param nome
+	 * @param tipo
+	 */
 	public FeatureEnvy(Double l_ATFD, Double l_LAA, String nome, String tipo) {
 		super();
 		this.l_ATFD = l_ATFD;
@@ -35,32 +60,74 @@ public class FeatureEnvy {
 		this.nome = nome;
 		this.tipo = tipo;
 	}
+	
+	
 
+	/**
+	 * get ATFD
+	 * @return
+	 */
 	public Double getL_ATFD() {
 		return l_ATFD;
 	}
 
+	/**
+	 * set ATFD
+	 * @param l_ATFD
+	 */
 	public void setL_ATFD(Double l_ATFD) {
 		this.l_ATFD = l_ATFD;
 	}
 
+	/**
+	 * get LAA
+	 * @return
+	 */
 	public Double getL_LAA() {
 		return l_LAA;
 	}
 
+	/**
+	 * set LAA
+	 * @param l_LAA
+	 */
 	public void setL_LAA(Double l_LAA) {
 		this.l_LAA = l_LAA;
 	}
 
+	/**
+	 * get Name
+	 * @return
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * set Name
+	 * @param nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * Tipo de operador AND ou OR
+	 * 
+	 *get tipo
+	 * @return
+	 */
+	public String getTipo() {
+		return tipo;
+	}
 
+	/**
+	 * set tipo
+	 * @param tipo
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -87,11 +154,21 @@ public class FeatureEnvy {
 		return true;
 	}
 
+	/**
+	 * 
+	 * Lista de Methods resultantes
+	 * @param aux
+	 * @return
+	 */
 	public List<Method> feature_envy(List<Method> aux) {
 		loc = new ArrayList<Method>();
 		locRes= new ArrayList<Method>();
 		count = 0.0;
 		List<Method> feature_envy = new ArrayList<Method>();
+		
+		/**
+		 * AND
+		 */
 		if (tipo.equals("AND")) {
 			for (Method m : aux) {
 				loc.add(m);
@@ -103,6 +180,10 @@ public class FeatureEnvy {
 			}
 			
 		} 
+		
+		/**
+		 * OR
+		 */
 		if(tipo.equals("OR")){
 			for (Method m : aux) {
 				loc.add(m);
@@ -117,14 +198,11 @@ public class FeatureEnvy {
 	}
 
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	
+	/**
+	 * is Feature Envy
+	 * @return
+	 */
 	public String isfeatureEnvyDet() {
 		acerto = 0;
 		for(Method m : locRes) {
@@ -141,6 +219,10 @@ public class FeatureEnvy {
 		return "Is-FeatureEnvy: " +  df.format(perc)+"%," + " com acerto de: " + acerto + " dos " + count + " considerados.";
 	}
 	
+	/**
+	 * Is IPlasma de Feature Envy
+	 * @return
+	 */
 	public String isIPlasma() {
 		cDCI = 0;
 		cDII = 0;
@@ -175,7 +257,12 @@ public class FeatureEnvy {
 		return "Is IPlasma: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "% ,"+"ADCI=" + df.format(ADCI) + "% ,"
 				+"ADII="+ df.format(ADII) + "%.";
 	}
+	
 
+	/**
+	 * Is PMD de Feature Envy
+	 * @return
+	 */
 	public String isPMD() {
 		cDCI = 0;
 		cDII = 0;
@@ -211,6 +298,10 @@ public class FeatureEnvy {
 				+"ADII="+ df.format(ADII) + "%.";
 	}
 
+	/**
+	 * Lista local usado para Test
+	 * @return
+	 */
 	public Object getLocRes() {
 		// TODO Auto-generated method stub
 		return locRes;

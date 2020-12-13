@@ -6,8 +6,16 @@ import java.util.List;
 
 import software.Method;
 
+/**
+ * Classe representativa de Long Method
+ *
+ *
+ */
 public class LongMethod {
 
+	/**
+	 * Atributos
+	 */
 	private Double l_LOC;
 	private Double l_CYCLO;
 	private String name;
@@ -23,10 +31,20 @@ public class LongMethod {
 	private List<Method> loc;
 	private List<Method> locRes;
 
+	/**
+	 * Construtor sem parametro
+	 */
 	public LongMethod() {
 
 	}
 
+	/**
+	 * Construtor
+	 * @param l_LOC
+	 * @param l_CYCLO
+	 * @param name
+	 * @param tipo
+	 */
 	public LongMethod(Double l_LOC, Double l_CYCLO, String name, String tipo) {
 		super();
 		this.l_LOC = l_LOC;
@@ -35,38 +53,74 @@ public class LongMethod {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * get Tipo usado AND ou OR
+	 * @return
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * set Tipo AND ou OR
+	 * @param tipo
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * get Name
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * set Name
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * get LOC
+	 * @return
+	 */
 	public Double getL_LOC() {
 		return l_LOC;
 	}
 
+	/**
+	 * set LOC
+	 * @param l_LOC
+	 */
 	public void setL_LOC(Double l_LOC) {
 		this.l_LOC = l_LOC;
 	}
 
+	/**
+	 * get CYCLO
+	 * @return
+	 */
 	public Double getL_CYCLO() {
 		return l_CYCLO;
 	}
 
+	/**
+	 * set CYCLO
+	 * @param l_CYCLO
+	 */
 	public void setL_CYCLO(Double l_CYCLO) {
 		this.l_CYCLO = l_CYCLO;
 	}
 
+	/**
+	 * Lista local usado para Teste
+	 * @return
+	 */
 	public List<Method> getLocRes(){
 		return locRes;
 	}
@@ -96,11 +150,20 @@ public class LongMethod {
 		return true;
 	}
 
+	/**
+	 * Lista de Methods retornado segundo Long Method
+	 * @param soft
+	 * @return
+	 */
 	public List<Method> longMethod(List<Method> soft) {
 		loc = new ArrayList<Method>();
 		locRes = new ArrayList<Method>();
 		count = 0.0;
 		List<Method> longMethod = new ArrayList<Method>();
+		
+		/**
+		 * AND
+		 */
 		if (tipo.equals("AND")) {
 			for (Method m : soft) {
 				loc.add(m);
@@ -112,6 +175,10 @@ public class LongMethod {
 			}
 
 		}
+		
+		/**
+		 * OR
+		 */
 		if(tipo.equals("OR")) {
 			for (Method m : soft) {
 				loc.add(m);
@@ -125,6 +192,10 @@ public class LongMethod {
 		return longMethod;
 	}
 
+	/**
+	 * Is IPlasma Long Method
+	 * @return
+	 */
 	public String isIPlasma() {
 		cDCI = 0;
 		cDII = 0;
@@ -160,6 +231,10 @@ public class LongMethod {
 				+"ADII="+ df.format(ADII) + "%.";
 	}
 
+	/**
+	 * Is PMD Long Method
+	 * @return
+	 */
 	public String isPMD() {
 		cDCI = 0;
 		cDII = 0;
@@ -194,6 +269,11 @@ public class LongMethod {
 		return "Is PMD: "+ "DCI=" + df.format(DCI) + "%, "+"DII=" + df.format(DII) + "%, "+"ADCI=" + df.format(ADCI) + "%, "
 				+"ADII="+ df.format(ADII) + "%.";
 	}
+	
+	/**
+	 * is Long Method
+	 * @return
+	 */
 	public String islongMethod() {
 		acerto = 0;
 		for(Method m : locRes) {

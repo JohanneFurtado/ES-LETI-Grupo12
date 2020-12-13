@@ -15,16 +15,26 @@ import software.Method;
 
 public class Servidor {
 
+	/**
+	 *  Listas do servidor
+	 *  Optamos pela implementacao do servidor de moda a separa os conceitos do backend
+	 *   com a interecao do utilizador
+	 */
 	private List<LongMethod> longMethodList = new ArrayList<LongMethod>();
 	private List<FeatureEnvy> featureEnvyList = new ArrayList<FeatureEnvy>();
 	private List<Method> featureEnvyResult = new ArrayList<Method>();
 	
-	
+	/***
+	 * Para facilitar a linguagem de programacao o proprio servidor toma 
+	 * a liberdade de começar a leitura do ficheiro e a consulta a banco de dados 
+	 */
 	private  Excel excel;
 	private LongMethodTXT lMtxt;
 	private FeatureEnvyTXT fEtxt;
 	
-	
+	/**
+	 * 
+	 */
 	public Servidor(){
 		excel = new Excel();
 		lMtxt = new LongMethodTXT();
@@ -36,17 +46,26 @@ public class Servidor {
 		featureEnvyList = fEtxt.leitor();
 	}
 	
-	public void  writeLMtxt() {
-	}
-	
-
+	/**
+	 * 
+	 */
 	private LongMethodListController longMethodListController;
 	private FeatureEnvyListController featureEnvyListController;
+	
+	
 
+	/**
+	 * 
+	 * @param longMethodListController
+	 */
 	public void setLongMethod(LongMethodListController longMethodListController) {
 		this.longMethodListController = longMethodListController;
 	}
 	
+	/**
+	 * 
+	 * @param featureEnvyListController
+	 */
 	public void setFeatureEnvy(FeatureEnvyListController featureEnvyListController) {
 		this.featureEnvyListController = featureEnvyListController;
 		
@@ -56,6 +75,10 @@ public class Servidor {
 		resultController.resultTableViewMethod();
 	}
 
+	/**
+	 * Salvar ou alterar uma regra Long Method
+	 * @param obj
+	 */
 	public void saveOrUpdate(LongMethod obj) {
 		for (LongMethod lM : longMethodList) {
 			if (lM.getName().equals(obj.getName())) {
@@ -71,7 +94,10 @@ public class Servidor {
 		longMethodListController.updateTableView();
 	}
 
-	
+	/**
+	 * Salvar ou alterar uma regra Feature Envy
+	 * @param obj
+	 */
 	public void saveOrUpdate(FeatureEnvy obj) {
 		for (FeatureEnvy lM : featureEnvyList) {
 			if (lM.getNome().equals(obj.getNome())) {
@@ -89,6 +115,10 @@ public class Servidor {
 		
 	}
 	
+	/**
+	 * Remocao de uma Long Method
+	 * @param obj
+	 */
 	public void remove(LongMethod obj) {
 		for (LongMethod lM : longMethodList) {
 			if (lM.getName().equals(obj.getName())) {
@@ -100,6 +130,10 @@ public class Servidor {
 
 	}
 	
+	/**
+	 * Remocao de uma Feature Envy
+	 * @param obj
+	 */
 	public void remove(FeatureEnvy obj) {
 		for (FeatureEnvy lM : featureEnvyList) {
 			if (lM.getNome().equals(obj.getNome())) {
@@ -111,10 +145,18 @@ public class Servidor {
 		
 	}
 	
+	/**
+	 * Todas as regras Long Method existente
+	 * @return
+	 */
 	public List<LongMethod> findAllLongMethod() {
 		return longMethodList;	
 	}
 
+	/**
+	 * Todas as linha do excel que foram transformada em um objeto do tipo Method
+	 * @return
+	 */
 	public List<Method> findAllMethod() {
 		List<Method> list = new ArrayList<Method>();
 		for(Method m : excel.allMethod() ) {
@@ -124,11 +166,11 @@ public class Servidor {
 	}
 
 	
+	/**
+	 * Todas as Regras Feature Envy existentes
+	 * @return
+	 */
 	public List<FeatureEnvy> findAllFeatureEnvy() {
 		return featureEnvyList;
-	}
-
-	public List<Method> findAllMethodFeatureEnvy() {
-		return featureEnvyResult;
 	}
 }
